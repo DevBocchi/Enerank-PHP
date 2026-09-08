@@ -1,0 +1,15 @@
+# Credenciais e configuração sensível
+config/database.php
+.env
+# Dependências (caso use Composer no futuro)
+/vendor/
+composer.lock
+# Arquivos de IDE / editor
+.idea/
+.vscode/
+*.iml
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+# Logs
+*.log
