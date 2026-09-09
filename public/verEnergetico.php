@@ -1,5 +1,5 @@
 <?php
-require 'database.php';
+require '../config/database.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -90,8 +90,8 @@ $energeticos = $stmt->fetchAll();
         </div>
     <?php endforeach;?>
 
-    <a href="criarEnergetico.php" class="btn-pill">Adicinar Energetico</a>
-</div>
 
+</div>
+<a href="criarEnergetico.php" class="btn-pill">Adicinar Energetico</a>
 </body>
 </html>

@@ -1,14 +1,16 @@
 <?php
-require 'database.php';
+require '../config/database.php';
 
 $id = $_GET['id'] ?? $_POST['id'] ?? null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
         $id = $_POST['id'];
         $marca = $_POST['marca'];
         $nome = $_POST['nome'];
         $sabor = $_POST['sabor'];
         $nota = $_POST['nota'];
         $zero = isset($_POST['zero']) ? 1 : 0;
+
         $query = "UPDATE energeticos 
                   SET marca = :marca, nome = :nome, sabor = :sabor, nota = :nota, zero = :zero
                   WHERE id = :id;
@@ -22,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'zero' => $zero,
                 'id' => $id,
         ]);
+
         header('Location: verEnergetico.php');
         exit;
 }
