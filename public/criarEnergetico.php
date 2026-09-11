@@ -1,34 +1,26 @@
 <?php
-require '../config/database.php';
+require_once __DIR__ . '/../app/Models/Database.php';
+require_once __DIR__ . '/../app/Models/Energetico.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
     if ($_POST['action'] === 'create') {
 
-        $marca = $_POST['marca'];
-        $nome = $_POST['nome'];
-        $sabor = $_POST['sabor'];
-        $nota = $_POST['nota'];
-        $zero = isset($_POST['zero']) ? 1: 0;
+        $dados = [
+                'marca' => $_POST['marca'],
+            'nome' => $_POST['nome'],
+            'sabor' => $_POST['sabor'],
+            'nota' => $_POST['nota'],
+            'zero' => isset($_POST['zero']) ? 1 : 0,
+        ];
 
-        $query = "INSERT INTO energeticos (marca, nome, sabor, nota, zero)
-                  VALUES (:marca, :nome, :sabor, :nota, :zero)
-                 ";
-
-        $stmt = $pdo->prepare($query);
-        $stmt->execute([
-                'marca' => $marca,
-                'nome' => $nome,
-                'sabor' => $sabor,
-                'nota' => $nota,
-                'zero' => $zero
-        ]);
+        Energetico::create($dados);
     }
 
     header('Location: verEnergetico.php');
     exit;
-}
 
+}
 ?>
 
 <!doctype html>
