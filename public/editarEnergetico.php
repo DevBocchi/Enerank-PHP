@@ -1,40 +1,30 @@
 <?php
-require '../config/database.php';
+require_once __DIR__ . '/../app/Models/Database.php';
+require_once __DIR__ . '/../app/Models/Energetico.php';
 
 $id = $_GET['id'] ?? $_POST['id'] ?? null;
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $id = $_POST['id'];
-        $marca = $_POST['marca'];
-        $nome = $_POST['nome'];
-        $sabor = $_POST['sabor'];
-        $nota = $_POST['nota'];
-        $zero = isset($_POST['zero']) ? 1 : 0;
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-        $query = "UPDATE energeticos 
-                  SET marca = :marca, nome = :nome, sabor = :sabor, nota = :nota, zero = :zero
-                  WHERE id = :id;
-                 ";
-        $stmt = $pdo->prepare($query);
-        $stmt->execute([
-                'marca' => $marca,
-                'nome' => $nome,
-                'sabor' => $sabor,
-                'nota' => $nota,
-                'zero' => $zero,
-                'id' => $id,
-        ]);
+    $id = $_POST['id'];
 
-        header('Location: verEnergetico.php');
-        exit;
+    $dados = [
+      'marca' => $_POST['marca'],
+      'nome' => $_POST['nome'],
+      'sabor' => $_POST['sabor'],
+      'nota' => $_POST['nota'],
+      'zero' => isset($_POST['zero']) ? 1 : 0,
+    ];
+
+    Energetico::update($id, $dados);
+
+    header('Location:verEnergetico.php');
+    exit;
 }
-$query = "SELECT * FROM energeticos WHERE id = :id";
-$stmt = $pdo->prepare($query);
-$stmt->execute([
-        'id' => $id
-]);
-$energetico = $stmt->fetch();
+
+$energetico = Energetico::find($id);
 ?>
+
 <!doctype html>
 <html lang="pt-br">
 <head>
