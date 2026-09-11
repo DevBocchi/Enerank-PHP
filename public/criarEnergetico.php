@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     if ($_POST['action'] === 'create') {
 
         $dados = [
-                'marca' => $_POST['marca'],
+            'marca' => $_POST['marca'],
             'nome' => $_POST['nome'],
             'sabor' => $_POST['sabor'],
             'nota' => $_POST['nota'],
