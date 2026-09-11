@@ -1,30 +1,21 @@
+
 <?php
-require '../config/database.php';
+require_once __DIR__ . "/../app/Models/Database.php";
+require_once __DIR__ . "/../app/Models/Energetico.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if ($_POST['action'] === 'delete') {
+    if($_POST['action'] === 'delete'){
 
         $id = $_POST['id'];
-
-        $query = "DELETE FROM energeticos
-                  WHERE id = :id;
-                 ";
-        $stmt = $pdo->prepare($query);
-        $stmt->execute([
-                'id' => $id
-        ]);
+        Energetico::delete($id);
     }
 
     header('Location: verEnergetico.php');
     exit;
 }
 
-$query = "SELECT * FROM energeticos";
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-$energeticos = $stmt->fetchAll();
-
+$energeticos = Energetico::all();
 ?>
 
 <!doctype html>
