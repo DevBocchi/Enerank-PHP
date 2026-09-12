@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use PDO;
+use PDOException;
+
 /**
  * Classe responsável por criar e devolver SEMPRE a mesma conexão PDO
  * durante uma requisição (padrão de projeto "Singleton").

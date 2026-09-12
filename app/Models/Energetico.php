@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 /**
  * Model da tabela `energeticos`.
  * Todo SQL relacionado a energéticos vive aqui — nada de query solta
