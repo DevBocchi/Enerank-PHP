@@ -1,7 +1,8 @@
 
 <?php
-require_once __DIR__ . "/../app/Models/Database.php";
-require_once __DIR__ . "/../app/Models/Energetico.php";
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use App\Models\Energetico;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
