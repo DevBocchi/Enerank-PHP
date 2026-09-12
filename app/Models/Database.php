@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 /**
  * Classe responsável por criar e devolver SEMPRE a mesma conexão PDO
  * durante uma requisição (padrão de projeto "Singleton").
