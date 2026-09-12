@@ -1,0 +1,15 @@
+{
+    "name": "bocchi/energy-drink",
+    "authors": [
+        {
+            "name": "bocchi",
+            "email": "boccfiap@outlook.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
