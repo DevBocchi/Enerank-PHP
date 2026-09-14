@@ -3,11 +3,10 @@
 use App\Controllers\EnergeticoController;
 
 return [
-    'criar' => [EnergeticoController::class, 'criar'],
-    'store' => [EnergeticoController::class, 'store'],
-    'editar' => [EnergeticoController::class, 'editar'],
+    'index'  => [EnergeticoController::class, 'index'],
+    'create' => [EnergeticoController::class, 'create'],
+    'store'  => [EnergeticoController::class, 'store'],
+    'edit'   => [EnergeticoController::class, 'edit'],
     'update' => [EnergeticoController::class, 'update'],
-    'listar' => [EnergeticoController::class, 'listar'],
-    'deletar' => [EnergeticoController::class, 'deletar'],
-
+    'delete' => [EnergeticoController::class, 'delete'],
 ];
