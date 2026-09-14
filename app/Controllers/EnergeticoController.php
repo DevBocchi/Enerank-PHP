@@ -33,4 +33,31 @@ class EnergeticoController
         header('Location: verEnergetico.php');
         exit;
     }
+
+    public static function edit(): void
+    {
+        $id = $_GET['id'] ?? null;
+
+        $energetico = Energetico::find($id);
+
+        require __DIR__ . '/../Views/energetico/editar.php';
+    }
+
+    public static function update(): void
+    {
+        $id = $_POST['id'];
+
+        $dados = [
+            'marca' => $_POST['marca'],
+            'nome'  => $_POST['nome'],
+            'sabor' => $_POST['sabor'],
+            'nota'  => $_POST['nota'],
+            'zero'  => isset($_POST['zero']) ? 1 : 0,
+        ];
+
+        Energetico::update($id, $dados);
+
+        header('Location: verEnergetico.php');
+        exit;
+    }
 }
