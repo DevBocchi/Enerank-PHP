@@ -13,7 +13,7 @@
 <h1 class="page-title">Editar Energético</h1>
 
 <section class="review-section">
-    <form method="POST" class="review-form">
+    <form method="POST" class="review-form" action="index.php?rota=update">
         <input type="hidden" name="id" value="<?= $energetico['id'] ?>">
 
         <div class="field-row">

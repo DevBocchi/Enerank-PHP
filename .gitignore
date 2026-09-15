@@ -14,5 +14,5 @@ Thumbs.db
 # Logs
 *.log
 
-test.php
-CORRECAO.txt
+testes/test.php
+testes/CORRECAO.txt

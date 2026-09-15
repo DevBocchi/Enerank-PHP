@@ -13,7 +13,7 @@
 <h1 class="page-title">Avalie o Energético</h1>
 
 <section class="review-section">
-    <form method="POST" class="review-form">
+    <form method="POST" class="review-form" action="index.php?rota=store">
 
         <div class="field-row">
             <label>Marca :</label>

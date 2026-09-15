@@ -30,7 +30,7 @@ class EnergeticoController
 
         Energetico::create($dados);
 
-        header('Location: verEnergetico.php');
+        header('Location: index.php?rota=index');
         exit;
     }
 
@@ -57,7 +57,17 @@ class EnergeticoController
 
         Energetico::update($id, $dados);
 
-        header('Location: verEnergetico.php');
+        header('Location: index.php?rota=index');
+        exit;
+    }
+
+    public static function delete(): void
+    {
+        $id = $_POST['id'];
+
+        Energetico::delete($id);
+
+        header('Location: index.php?rota=index');
         exit;
     }
 }

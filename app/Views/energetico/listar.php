@@ -49,18 +49,17 @@
             </div>
 
             <div class="card-actions">
-                <form method="POST">
-                    <input type="hidden" name="action" value="delete">
+                <form method="POST" action="index.php?rota=delete"> <!--alterado-->
                     <input type="hidden" name="id" value="<?= $dados['id'] ?>">
                     <button type="submit">Excluir</button>
                 </form>
 
-                <a href="editarEnergetico.php?id=<?= $dados['id'] ?>">Editar</a>
+                <a href="index.php?rota=edit&id=<?= $dados['id'] ?>">Editar</a> <!--alterado-->
             </div>
 
         </div>
     <?php endforeach; ?>
 </div>
-<a href="criarEnergetico.php" class="btn-pill">Adicinar Energetico</a>
+<a href="index.php?rota=create" class="btn-pill">Adicinar Energetico</a><!--alterado-->
 </body>
 </html>
