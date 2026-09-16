@@ -1,0 +1,39 @@
+Ordem de sequencia MVC
+
+Usuário
+    escolhe uma ação (link/formulário) → chega no index.php
+
+index.php
+    lê a rota pedida e aciona o Controller certo
+
+Controller
+    recebe os dados da requisição ($_POST, $_GET)
+    decide qual método do Model chamar (all, find, create, update, delete)
+
+Model
+    executa a operação no banco de dados e devolve o resultado
+
+Controller
+    recebe o resultado do Model e passa pra View
+
+View
+    exibe o HTML final ao usuário (listar, criar, editar)
+
+
+-----------------------------------------------------------------------------------
+
+Routes
+
+O index.php chamada o routes, pedindo o caminho a ser seguido.
+    -> $rotas = require __DIR__ . '/../config/routes.php';
+
+Ao chamar, o index chama pelo caminho
+
+O usuário acessa, por exemplo, index.php?rota=edit&id=5
+O index.php lê $_GET['rota'] → pega o valor 'edit'
+Ele procura 'edit' dentro do array de routes.php → encontra [EnergeticoController::class, 'edit']
+Com isso, ele sabe: "preciso chamar o método edit da classe EnergeticoController"
+call_user_func([$controller, $metodo]) executa isso na prática —
+    é como se o PHP tivesse escrito EnergeticoController::edit() diretamente
+
+
