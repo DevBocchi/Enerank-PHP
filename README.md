@@ -9,7 +9,7 @@ sem conseguir explicar o que o código do sprint atual está fazendo.
 
 ---
 
-## Sprint 0 — Organizar a casa (estrutura de pastas MVC)
+## Sprint 0 — Organizar a casa (estrutura de pastas MVC) ✅
 
 **Objetivo:** sair do "tudo misturado num arquivo .php" para uma estrutura de pastas
 que separa responsabilidades, sem ainda mudar a lógica.
@@ -33,9 +33,9 @@ enerank/
 ```
 
 **Tarefas:**
-- [ ] Criar as pastas acima
-- [ ] Mover `public/assets` para dentro de `public/`
-- [ ] Deixar `config/database.php` de fora da pasta pública (ninguém deve acessar
+- [x] Criar as pastas acima
+- [x] Mover `public/assets` para dentro de `public/`
+- [x] Deixar `config/database.php` de fora da pasta pública (ninguém deve acessar
   `seusite.com/database.php` diretamente)
 
 **Por que isso importa:** hoje, qualquer arquivo `.php` na raiz é acessível
@@ -44,52 +44,59 @@ primeiro passo de segurança de qualquer app PHP real.
 
 ---
 
-## Sprint 1 — Classe de conexão (POO + PDO)
+## Sprint 1 — Classe de conexão (POO + PDO) ✅
 
 **Objetivo:** trocar o `require 'database.php'` com `$pdo` solto por uma classe.
 
 **Tarefas:**
-- [ ] Criar `app/Models/Database.php` com uma classe `Database` usando o padrão
+- [x] Criar `app/Models/Database.php` com uma classe `Database` usando o padrão
   **Singleton** (só existe uma conexão PDO ativa por requisição)
-- [ ] Ler host/usuário/senha de variáveis de ambiente (`.env`), não direto no código
-- [ ] Testar: qualquer Model deve conseguir pegar a conexão com
+- [x] Ler host/usuário/senha de variáveis de ambiente (`.env`), não direto no código
+- [x] Testar: qualquer Model deve conseguir pegar a conexão com
   `Database::getConnection()`
 
 **Conceitos novos:** classes, métodos estáticos, singleton, variáveis de ambiente.
 
 ---
 
-## Sprint 2 — Models (regra de negócio + banco)
+## Sprint 2 — Models (regra de negócio + banco) ✅
 
 **Objetivo:** cada tabela do banco vira uma classe. As queries saem do meio do HTML.
 
 **Tarefas:**
-- [ ] Criar `app/Models/Energetico.php` com métodos:
+- [x] Criar `app/Models/Energetico.php` com métodos:
   `all()`, `find($id)`, `create($dados)`, `update($id, $dados)`, `delete($id)`
-- [ ] Cada método usa PDO com **prepared statements** (você já faz isso — só migra
+- [x] Cada método usa PDO com **prepared statements** (você já faz isso — só migra
   pra dentro da classe)
-- [ ] Nenhum SQL deve sobrar fora dessa classe
+- [x] Nenhum SQL deve sobrar fora dessa classe
 
 **Conceitos novos:** classes como "camada de acesso a dados", separação de
 responsabilidades.
 
 ---
 
-## Sprint 3 — Controllers + Views (fim do PHP misturado com HTML)
+## Sprint 3 — Controllers + Views (fim do PHP misturado com HTML) ✅
 
 **Objetivo:** separar "o que processa a requisição" de "o que é exibido na tela".
 
 **Tarefas:**
-- [ ] Criar `app/Controllers/EnergeticoController.php` com métodos como
-  `index()`, `store()`, `edit()`, `update()`, `destroy()`
-- [ ] Mover o HTML dos seus `.php` atuais para `app/Views/` (ex:
-  `energetico/index.php`, `energetico/edit.php`) — Views só recebem dados
+- [x] Criar `app/Controllers/EnergeticoController.php` com métodos
+  `index()`, `create()`, `store()`, `edit()`, `update()`, `delete()`
+- [x] Criar `app/Controllers/PaginaController.php` com `home()` para a landing page
+- [x] Mover o HTML dos `.php` antigos para `app/Views/energetico/` (`listar.php`,
+  `criar.php`, `editar.php`) e `app/Views/home.php` — Views só recebem dados
   prontos e exibem, sem lógica de banco
-- [ ] `public/index.php` vira um **front controller** simples: lê a URL, decide
-  qual Controller/método chamar
+- [x] `public/index.php` vira um **front controller**: lê a rota via `$_GET['rota']`
+  e despacha pro Controller/método certo usando `config/routes.php`
+- [x] Roteamento implementado como **array de rotas** (`'rota' => [Controller::class, 'metodo']`),
+  em vez de `switch`/`if` — mais organizado e fácil de estender
+- [x] Composer instalado, com autoload **PSR-4** (`App\` → `app/`), necessário pra
+  usar `Controller::class` nas rotas sem `require` manual
+- [x] Remover arquivos antigos (`verEnergetico.php`, `criarEnergetico.php`,
+  `editarEnergetico.php`) após migração completa
 
-**Conceitos novos:** MVC na prática, roteamento básico (pode começar simples, com
-`switch` ou `if` na URL — sem framework).
+**Conceitos novos:** MVC na prática, roteamento via array, front controller,
+autoload PSR-4 com Composer, `call_user_func` para despachar dinamicamente.
 
 ---
 
@@ -155,7 +162,6 @@ autorização (diferente de autenticação).
 ## Depois disso (ideias para continuar aprendendo)
 
 - Testes automatizados (PHPUnit)
-- Composer + autoload (PSR-4) em vez de `require` manual
 - Migrar para um micro-framework (Slim, ou até Laravel, pra comparar com o que
   você fez na mão)
 - Upload de imagem real de cada energético
