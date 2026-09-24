@@ -11,9 +11,7 @@ use PDO;
  */
 class Energetico
 {
-    /**
-     * Retorna todos os energéticos cadastrados.
-     */
+
     public static function all(): array
     {
         $pdo = Database::getConnection();
@@ -21,9 +19,7 @@ class Energetico
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /**
-     * Busca um único energético pelo id. Retorna null se não existir.
-     */
+
     public static function find(int $id): ?array
     {
         $pdo = Database::getConnection();
@@ -34,10 +30,7 @@ class Energetico
         return $resultado ?: null;
     }
 
-    /**
-     * Cria um novo energético. $dados deve ter as chaves:
-     * marca, nome, sabor, nota, zero.
-     */
+
     public static function create(array $dados): bool
     {
         $pdo = Database::getConnection();
@@ -55,9 +48,7 @@ class Energetico
         ]);
     }
 
-    /**
-     * Atualiza um energético existente pelo id.
-     */
+
     public static function update(int $id, array $dados): bool
     {
         $pdo = Database::getConnection();
@@ -77,9 +68,7 @@ class Energetico
         ]);
     }
 
-    /**
-     * Remove um energético pelo id.
-     */
+
     public static function delete(int $id): bool
     {
         $pdo = Database::getConnection();
